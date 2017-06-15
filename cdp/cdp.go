@@ -1438,17 +1438,18 @@ func (t *FrameID) UnmarshalJSON(buf []byte) error {
 
 // Frame information about the Frame on the page.
 type Frame struct {
-	ID             FrameID          `json:"id,omitempty"`             // Frame unique identifier.
-	ParentID       FrameID          `json:"parentId,omitempty"`       // Parent frame identifier.
-	LoaderID       LoaderID         `json:"loaderId,omitempty"`       // Identifier of the loader associated with this frame.
-	Name           string           `json:"name,omitempty"`           // Frame's name as specified in the tag.
-	URL            string           `json:"url,omitempty"`            // Frame document's URL.
-	SecurityOrigin string           `json:"securityOrigin,omitempty"` // Frame document's security origin.
-	MimeType       string           `json:"mimeType,omitempty"`       // Frame document's mimeType as determined by the browser.
-	State          FrameState       `json:"-"`                        // Frame state.
-	Root           *Node            `json:"-"`                        // Frame document root.
-	Nodes          map[NodeID]*Node `json:"-"`                        // Frame nodes.
-	sync.RWMutex   `json:"-"`       // Read write mutex.
+	ID             FrameID             `json:"id,omitempty"`             // Frame unique identifier.
+	ParentID       FrameID             `json:"parentId,omitempty"`       // Parent frame identifier.
+	LoaderID       LoaderID            `json:"loaderId,omitempty"`       // Identifier of the loader associated with this frame.
+	Name           string              `json:"name,omitempty"`           // Frame's name as specified in the tag.
+	URL            string              `json:"url,omitempty"`            // Frame document's URL.
+	SecurityOrigin string              `json:"securityOrigin,omitempty"` // Frame document's security origin.
+	MimeType       string              `json:"mimeType,omitempty"`       // Frame document's mimeType as determined by the browser.
+	State          FrameState          `json:"-"`                        // Frame state.
+	Root           *Node               `json:"-"`                        // Frame document root.
+	Nodes          map[NodeID]*Node    `json:"-"`                        // Frame nodes.
+	RemovedNodes   map[NodeID]struct{} `json:"-"`                        // Removed frame nodes.
+	sync.RWMutex   `json:"-"`          // Read write mutex.
 }
 
 // FrameState is the state of a Frame.
@@ -1749,6 +1750,7 @@ type Node struct {
 	Invalidated      chan struct{}  `json:"-"`                          // Invalidated channel.
 	State            NodeState      `json:"-"`                          // Node state.
 	sync.RWMutex     `json:"-"`     // Read write mutex.
+	RefCount         int32          `json:"-"` // Reference counter.
 }
 
 // AttributeValue returns the named attribute for the node.

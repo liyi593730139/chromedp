@@ -285,6 +285,7 @@ func (h *TargetHandler) documentUpdated(ctxt context.Context) {
 	}
 
 	f.Nodes = make(map[cdp.NodeID]*cdp.Node)
+	f.RemovedNodes = make(map[cdp.NodeID]struct{})
 	f.Root, err = dom.GetDocument().WithPierce(true).Do(ctxt, h)
 	if err != nil {
 		h.errorf("could not retrieve document root for %s: %v", f.ID, err)
@@ -489,16 +490,22 @@ func (h *TargetHandler) WaitNode(ctxt context.Context, f *cdp.Frame, id cdp.Node
 	// TODO: fix this
 	timeout := time.After(10 * time.Second)
 
+	var n *cdp.Node
+	var ok, removed bool
+
 loop:
 	for {
 		select {
 		default:
-			var n *cdp.Node
-			var ok bool
 
 			f.RLock()
 			n, ok = f.Nodes[id]
+			_, removed = f.RemovedNodes[id]
 			f.RUnlock()
+
+			if removed {
+				return nil, fmt.Errorf("node `%d` was removed in the meantime", id)
+			}
 
 			if n != nil && ok {
 				return n, nil
@@ -620,10 +627,10 @@ func (h *TargetHandler) domEvent(ctxt context.Context, ev interface{}) {
 				return
 			}
 		}
-		id, op = e.ParentNodeID, childNodeInserted(f.Nodes, e.PreviousNodeID, e.Node)
+		id, op = e.ParentNodeID, childNodeInserted(f.Nodes, f.RemovedNodes, e.PreviousNodeID, e.Node)
 
 	case *dom.EventChildNodeRemoved:
-		id, op = e.ParentNodeID, childNodeRemoved(f.Nodes, e.NodeID)
+		id, op = e.ParentNodeID, childNodeRemoved(f.Nodes, f.RemovedNodes, e.NodeID)
 
 	case *dom.EventShadowRootPushed:
 		id, op = e.HostID, shadowRootPushed(f.Nodes, e.Root)
@@ -641,7 +648,7 @@ func (h *TargetHandler) domEvent(ctxt context.Context, ev interface{}) {
 		id, op = e.InsertionPointID, distributedNodesUpdated(e.DistributedNodes)
 
 	default:
-		h.errorf("unhandled node event %s", reflect.TypeOf(ev))
+		h.errorf("unhandled node event %T", ev)
 		return
 	}
 

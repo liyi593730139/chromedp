@@ -275,23 +275,24 @@ func childNodeCountUpdated(count int64) nodeOp {
 	}
 }
 
-func childNodeInserted(m map[cdp.NodeID]*cdp.Node, prevID cdp.NodeID, c *cdp.Node) nodeOp {
+func childNodeInserted(m map[cdp.NodeID]*cdp.Node, rm map[cdp.NodeID]struct{}, prevID cdp.NodeID, c *cdp.Node) nodeOp {
 	return func(n *cdp.Node) {
 		n.Lock()
 		n.Children = insertNode(n.Children, prevID, c)
+		delete(rm, c.NodeID)
 		n.Unlock()
 
 		walk(m, n)
 	}
 }
 
-func childNodeRemoved(m map[cdp.NodeID]*cdp.Node, id cdp.NodeID) nodeOp {
+func childNodeRemoved(m map[cdp.NodeID]*cdp.Node, rm map[cdp.NodeID]struct{}, id cdp.NodeID) nodeOp {
 	return func(n *cdp.Node) {
 		n.Lock()
-		defer n.Unlock()
-
 		n.Children = removeNode(n.Children, id)
 		delete(m, id)
+		rm[id] = struct{}{}
+		n.Unlock()
 	}
 }
 
