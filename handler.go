@@ -488,6 +488,12 @@ loop:
 
 // WaitNode waits for a node to be loaded using the provided context.
 func (h *TargetHandler) WaitNode(ctxt context.Context, f *cdp.Frame, id cdp.NodeID) (*cdp.Node, error) {
+	if id == cdp.EmptyNodeID {
+		// FIXME(rjeczalik): improve event handlng in domEvent, either validate
+		// events or handle edge-cases
+		return nil, errors.New("can't wait on empty node")
+	}
+
 	// TODO: fix this
 	timeout := time.After(10 * time.Second)
 
