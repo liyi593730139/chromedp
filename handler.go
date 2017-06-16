@@ -2,6 +2,7 @@ package chromedp
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"reflect"
 	"runtime"
@@ -491,7 +492,7 @@ func (h *TargetHandler) WaitNode(ctxt context.Context, f *cdp.Frame, id cdp.Node
 	timeout := time.After(10 * time.Second)
 
 	var n *cdp.Node
-	var ok, removed bool
+	var ok, removed, empty bool
 
 loop:
 	for {
@@ -501,10 +502,16 @@ loop:
 			f.RLock()
 			n, ok = f.Nodes[id]
 			_, removed = f.RemovedNodes[id]
+			empty = f.Nodes == nil
 			f.RUnlock()
 
 			if removed {
 				return nil, fmt.Errorf("node `%d` was removed in the meantime", id)
+			}
+
+			if empty {
+				// FIXME(rjeczalik): quick workaround for timeouts on missing nodes
+				return nil, errors.New("frame is empty")
 			}
 
 			if n != nil && ok {
