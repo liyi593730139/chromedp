@@ -4,9 +4,9 @@ package emulation
 
 import (
 	json "encoding/json"
-	cdp "github.com/knq/chromedp/cdp"
-	page "github.com/knq/chromedp/cdp/page"
-	runtime "github.com/knq/chromedp/cdp/runtime"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	page "github.com/rjeczalik/chromedp/cdp/page"
+	runtime "github.com/rjeczalik/chromedp/cdp/runtime"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

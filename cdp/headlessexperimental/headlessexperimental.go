@@ -13,8 +13,8 @@ import (
 	"context"
 	"encoding/base64"
 
-	cdp "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/runtime"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/runtime"
 )
 
 // EnableParams enables headless events for the target.

@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	cdp "github.com/knq/chromedp"
-	cdptypes "github.com/knq/chromedp/cdp"
-	rundom "github.com/knq/chromedp/cdp/runtime"
+	cdp "github.com/rjeczalik/chromedp"
+	cdptypes "github.com/rjeczalik/chromedp/cdp"
+	rundom "github.com/rjeczalik/chromedp/cdp/runtime"
 )
 
 func main() {
@@ -47,7 +47,7 @@ func main() {
 func visible() cdp.Tasks {
 	var res *rundom.RemoteObject
 	return cdp.Tasks{
-		cdp.Navigate("file:" + os.Getenv("GOPATH") + "/src/github.com/knq/chromedp/testdata/visible.html"),
+		cdp.Navigate("file:" + os.Getenv("GOPATH") + "/src/github.com/rjeczalik/chromedp/testdata/visible.html"),
 		cdp.Evaluate(makeVisibleScript, &res),
 		cdp.ActionFunc(func(context.Context, cdptypes.Handler) error {
 			log.Printf(">>> res: %+v", res)

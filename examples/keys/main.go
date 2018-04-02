@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	cdp "github.com/knq/chromedp"
-	"github.com/knq/chromedp/kb"
+	cdp "github.com/rjeczalik/chromedp"
+	"github.com/rjeczalik/chromedp/kb"
 )
 
 func main() {
@@ -50,7 +50,7 @@ func main() {
 
 func sendkeys(val1, val2, val3, val4 *string) cdp.Tasks {
 	return cdp.Tasks{
-		cdp.Navigate("file:" + os.Getenv("GOPATH") + "/src/github.com/knq/chromedp/testdata/visible.html"),
+		cdp.Navigate("file:" + os.Getenv("GOPATH") + "/src/github.com/rjeczalik/chromedp/testdata/visible.html"),
 		cdp.WaitVisible(`#input1`, cdp.ByID),
 		cdp.WaitVisible(`#textarea1`, cdp.ByID),
 		cdp.SendKeys(`#textarea1`, kb.End+"\b\b\n\naoeu\n\ntest1\n\nblah2\n\n\t\t\t\b\bother box!\t\ntest4", cdp.ByID),

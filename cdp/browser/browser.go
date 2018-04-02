@@ -11,8 +11,8 @@ package browser
 import (
 	"context"
 
-	cdp "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/target"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/target"
 )
 
 // CloseParams close browser gracefully.

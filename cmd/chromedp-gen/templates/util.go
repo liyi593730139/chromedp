@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/knq/chromedp/cmd/chromedp-gen/internal"
+	"github.com/rjeczalik/chromedp/cmd/chromedp-gen/internal"
 	"github.com/knq/snaker"
 )
 

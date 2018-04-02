@@ -37,8 +37,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/knq/chromedp/cmd/chromedp-gen/internal"
-	"github.com/knq/chromedp/cmd/chromedp-gen/templates"
+	"github.com/rjeczalik/chromedp/cmd/chromedp-gen/internal"
+	"github.com/rjeczalik/chromedp/cmd/chromedp-gen/templates"
 )
 
 func setup() {

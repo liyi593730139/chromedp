@@ -12,8 +12,8 @@ package audits
 import (
 	"context"
 
-	cdp "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/network"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/network"
 )
 
 // GetEncodedResponseParams returns the response body and size if it were

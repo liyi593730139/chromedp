@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/dom"
-	"github.com/knq/chromedp/cdp/input"
-	"github.com/knq/chromedp/kb"
+	"github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/dom"
+	"github.com/rjeczalik/chromedp/cdp/input"
+	"github.com/rjeczalik/chromedp/kb"
 )
 
 // MouseAction is a mouse action.

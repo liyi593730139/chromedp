@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
-	cdp "github.com/knq/chromedp"
-	cdptypes "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/page"
+	cdp "github.com/rjeczalik/chromedp"
+	cdptypes "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/page"
 )
 
 func main() {

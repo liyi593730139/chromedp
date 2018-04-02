@@ -14,8 +14,8 @@ import (
 	"context"
 	"encoding/base64"
 
-	cdp "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/debugger"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/debugger"
 )
 
 // EnableParams enables network tracking, network events will now be

@@ -13,10 +13,10 @@ import (
 	"context"
 	"encoding/base64"
 
-	cdp "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/debugger"
-	"github.com/knq/chromedp/cdp/dom"
-	"github.com/knq/chromedp/cdp/runtime"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/debugger"
+	"github.com/rjeczalik/chromedp/cdp/dom"
+	"github.com/rjeczalik/chromedp/cdp/runtime"
 )
 
 // EnableParams enables page domain notifications.

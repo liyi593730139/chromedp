@@ -9,8 +9,8 @@ package animation
 import (
 	"context"
 
-	cdp "github.com/knq/chromedp/cdp"
-	"github.com/knq/chromedp/cdp/runtime"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	"github.com/rjeczalik/chromedp/cdp/runtime"
 )
 
 // EnableParams enables animation domain notifications.

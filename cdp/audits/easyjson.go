@@ -4,7 +4,7 @@ package audits
 
 import (
 	json "encoding/json"
-	network "github.com/knq/chromedp/cdp/network"
+	network "github.com/rjeczalik/chromedp/cdp/network"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

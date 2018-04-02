@@ -7,7 +7,7 @@ package kb
 import (
 	"unicode"
 
-	"github.com/knq/chromedp/cdp/input"
+	"github.com/rjeczalik/chromedp/cdp/input"
 )
 
 // Key contains information for generating a key press based off the unicode
@@ -94,7 +94,7 @@ func Encode(r rune) []*input.DispatchKeyEventParams {
 	keyDown := input.DispatchKeyEventParams{
 		Key:  v.Key,
 		Code: v.Code,
-		// BUG(rjeczalik): Works around github.com:knq/chromedp#130.
+		// BUG(rjeczalik): Works around github.com:rjeczalik/chromedp#130.
 		// NativeVirtualKeyCode:  v.Native,
 		WindowsVirtualKeyCode: v.Windows,
 	}

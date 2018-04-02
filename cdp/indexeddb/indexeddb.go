@@ -9,7 +9,7 @@ package indexeddb
 import (
 	"context"
 
-	cdp "github.com/knq/chromedp/cdp"
+	cdp "github.com/rjeczalik/chromedp/cdp"
 )
 
 // EnableParams enables events from backend.

@@ -10,7 +10,7 @@ var FlagSet = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
 // The application flags.
 var (
-	FlagPkg      = FlagSet.String("pkg", "github.com/knq/chromedp/cdp", "output package")
+	FlagPkg      = FlagSet.String("pkg", "github.com/rjeczalik/chromedp/cdp", "output package")
 	FlagFile     = FlagSet.String("file", "protocol.json", "path to chrome protocol.json")
 	FlagDep      = FlagSet.Bool("dep", false, "toggle deprecated API generation")
 	FlagExp      = FlagSet.Bool("exp", true, "toggle experimental API generation")

@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	cdp "github.com/knq/chromedp"
+	cdp "github.com/rjeczalik/chromedp"
 )
 
 func main() {

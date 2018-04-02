@@ -4,10 +4,10 @@ package network
 
 import (
 	json "encoding/json"
-	cdp "github.com/knq/chromedp/cdp"
-	debugger "github.com/knq/chromedp/cdp/debugger"
-	runtime "github.com/knq/chromedp/cdp/runtime"
-	security "github.com/knq/chromedp/cdp/security"
+	cdp "github.com/rjeczalik/chromedp/cdp"
+	debugger "github.com/rjeczalik/chromedp/cdp/debugger"
+	runtime "github.com/rjeczalik/chromedp/cdp/runtime"
+	security "github.com/rjeczalik/chromedp/cdp/security"
 	easyjson "github.com/mailru/easyjson"
 	jlexer "github.com/mailru/easyjson/jlexer"
 	jwriter "github.com/mailru/easyjson/jwriter"

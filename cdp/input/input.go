@@ -9,7 +9,7 @@ package input
 import (
 	"context"
 
-	cdp "github.com/knq/chromedp/cdp"
+	cdp "github.com/rjeczalik/chromedp/cdp"
 )
 
 // SetIgnoreInputEventsParams ignores input events (useful while auditing

@@ -9,7 +9,7 @@ package performance
 import (
 	"context"
 
-	cdp "github.com/knq/chromedp/cdp"
+	cdp "github.com/rjeczalik/chromedp/cdp"
 )
 
 // EnableParams enable collecting and reporting metrics.
