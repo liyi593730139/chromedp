@@ -19,7 +19,7 @@ func Navigate(urlstr string) Action {
 		// navigations.
 		h.ResetEventLoad()
 
-		frameID, err := page.Navigate(urlstr).Do(ctxt, h)
+		frameID, _, _, err := page.Navigate(urlstr).Do(ctxt, h)
 		if err != nil {
 			return err
 		}
